@@ -1,0 +1,7 @@
+{
+	"name": "csv-parquet",
+	"properties": {
+		"description": "Criado para converter um arquivo CSV para um Parquet.",
+		"annotations": []
+	}
+}
