@@ -25,36 +25,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/CSV')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('CSV_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Parquet')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('Parquet_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('Parquet_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/csv-parquet')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -97,6 +67,20 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "\u001f�\b\bK\u0014EJ\u0000\u0003Amazon0302.txt\u0000\\����<r��~\f�\u001c>`6�b\u0002�]�$@\u0016�*'а{<F0n��I�\u001c}t�\u0014K�ͫ��SER\u0012E��b�?��?��_��\u000f���������/�w��?��?�ۿ����翾������\u001f����_������?��\u001f�����M�˿�ß�������_�����_�������������?8���_���ÿ��\u000f�������\u000f��O��o��O�˟�����_��?��_��_��������?��4���(�?�Qg-���?��?�R[�k����Ղ�������/�����W��Oß�?�����\u001e�����i��[�K��¿�\u001b��r�7\u001b��\u0007�N�}+��S&��7���������g�\u000f��[�D�\u0013�L�2�������_\u0016\u0012\u0017\u0012ׯ1����Y����+�*\u0005'��|�����8n\u001f��JA�޿b\u0014���\u0001?����X|�>6\u001fQX�rceph<������",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "\u001f�\b\bK\u0014EJ\u0000\u0003Amazon0302.txt\u0000\\����<r��~\f�\u001c>`6�b\u0002�]�$@\u0016�*'а{<F0n��I�\u001c}t�\u0014K�ͫ��SER\u0012E��b�?��?��_��\u000f���������/�w��?��?�ۿ����翾������\u001f����_������?��\u001f�����M�˿�ß�������_�����_�������������?8���_���ÿ��\u000f�������\u000f��O��o��O�˟�����_��?��_��_��������?��4���(�?�Qg-���?��?�R[�k����Ղ�������/�����W��Oß�?�����\u001e�����i��[�K��¿�\u001b��r�7\u001b��\u0007�N�}+��S&��7���������g�\u000f��[�D�\u0013�L�2�������_\u0016\u0012\u0017\u0012ׯ1����Y����+�*\u0005'��|�����8n\u001f��JA�޿b\u0014���\u0001?����X|�>6\u001fQX�rceph<������",
+											"type": "String",
+											"physicalType": "UTF8"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -183,6 +167,36 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Parquet')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('CSV_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Parquet_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Parquet_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }
